@@ -58,8 +58,14 @@ angular.module('angularCalculator').controller('MainController', function($scope
 
   function number(key) {
     if (calcToggle === 0) {
-      $scope.screenDisplay = key;
-      calcToggle = 1;
+      if (key === '.') {
+        $scope.screenDisplay = '0'+key;
+        calcToggle = 1;
+      }
+      else {
+        $scope.screenDisplay = key;
+        calcToggle = 1;
+      }
     }
     else {
       $scope.screenDisplay += key;
@@ -81,7 +87,9 @@ angular.module('angularCalculator').controller('MainController', function($scope
 
   function addDec() {
     if (!decActive) {
-      $scope.screenDisplay += '.';
+
+      number('.');
+      // $scope.screenDisplay += '.';
       decActive = true;
     }
 
