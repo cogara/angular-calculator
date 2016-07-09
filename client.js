@@ -4,7 +4,7 @@ angular.module('angularCalculator').controller('MainController', function($scope
   $scope.screenDisplay = '0';
   $scope.storedCalc = [];
   var calcToggle = 0;
-  var calcArray = [];
+  $scope.calcArray = [];
   var decActive = false;
   var storedValue;
 
@@ -24,27 +24,27 @@ angular.module('angularCalculator').controller('MainController', function($scope
 
   $scope.calculate = function() {
     calcToggle = 0;
-    if (calcArray.length > 1) {
+    if ($scope.calcArray.length > 1) {
     storedValue = $scope.screenDisplay;
-    calcArray.push(parseFloat(storedValue));
+    $scope.calcArray.push(parseFloat(storedValue));
 
-      switch(calcArray[1]) {
+      switch($scope.calcArray[1]) {
         case '/':
-          $scope.screenDisplay = calcArray[0]/calcArray[2];
+          $scope.screenDisplay = $scope.calcArray[0]/$scope.calcArray[2];
           break;
         case 'x':
-          $scope.screenDisplay = calcArray[0]*calcArray[2];
+          $scope.screenDisplay = $scope.calcArray[0]*$scope.calcArray[2];
           break;
         case '-':
-          $scope.screenDisplay = calcArray[0]-calcArray[2];
+          $scope.screenDisplay = $scope.calcArray[0]-$scope.calcArray[2];
           break;
         case '+':
-          $scope.screenDisplay = parseFloat(calcArray[0])+parseFloat(calcArray[2]);
+          $scope.screenDisplay = parseFloat($scope.calcArray[0])+parseFloat($scope.calcArray[2]);
           break;
       }
       var result = $scope.screenDisplay;
-      $scope.storedCalc.push({params: calcArray, result: result});
-      calcArray = [];
+      $scope.storedCalc.push({params: $scope.calcArray, result: result});
+      $scope.calcArray = [];
       decActive = false;
     }
   }
@@ -52,7 +52,7 @@ angular.module('angularCalculator').controller('MainController', function($scope
   $scope.clear = function() {
     $scope.screenDisplay = '0';
     calcToggle = 0;
-    calcArray = [];
+    $scope.calcArray = [];
     storedValue = 0;
   }
 
@@ -67,20 +67,16 @@ angular.module('angularCalculator').controller('MainController', function($scope
   }
 
   function operator(key) {
-
     $scope.calculate();
     operatorToArray(key);
-    if (calcArray.length < 2) {
-      $scope.screenDisplay = 0;
-    }
   }
 
   function operatorToArray(key) {
     storedValue = $scope.screenDisplay;
-    calcArray.push(storedValue);
-    calcArray.push(key);
+    $scope.calcArray.push(storedValue);
+    $scope.calcArray.push(key);
     decActive = false;
-    console.log('op to array', calcArray);
+    console.log('op to array', $scope.calcArray);
   }
 
   function addDec() {
@@ -91,14 +87,8 @@ angular.module('angularCalculator').controller('MainController', function($scope
 
   }
 
-  $scope.keydownevt = function () {
-                $scope.keydownkeycode = event.keyCode;
-                $scope.keyupkeycode = "";
-                $scope.keypresskeycode = "";
-            };
-
   $scope.logTest = function() {
-    console.log('array', calcArray);
+    console.log('array', $scope.calcArray);
     console.log('toggle', calcToggle);
   }
 })

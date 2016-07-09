@@ -33,9 +33,9 @@ h4 {
 
 .calculator-screen {
   display: flex;
+  flex-wrap: wrap;
   padding: 0 10px;
-  min-height: 50px;
-  max-height: 300px;
+  min-height: 55px;
   overflow: scroll;
   background-color: rgb(150,175,150);
   margin: 0px auto;
@@ -59,10 +59,28 @@ h4 {
   border-radius: 5px;
 }
 
+.button:active {
+  position: relative;
+  top: 1px;
+  left: 1px;
+}
+
 .button-3 {
   flex: 1 70%;
 }
 
 .orange {
   background-color: rgb(220,150,0);
+}
+
+.current-operation, .result {
+  flex: 0 100%;
+}
+
+.current-operation {
+  text-align: left;
+}
+
+.result {
+  text-align: right;
 }
