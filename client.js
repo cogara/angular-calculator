@@ -24,7 +24,6 @@ angular.module('angularCalculator').controller('MainController', function($scope
 
   $scope.calculate = function() {
     calcToggle = 0;
-    console.log('in calculate', calcArray);
     if (calcArray.length > 1) {
     storedValue = $scope.screenDisplay;
     calcArray.push(parseFloat(storedValue));
@@ -91,6 +90,12 @@ angular.module('angularCalculator').controller('MainController', function($scope
     }
 
   }
+
+  $scope.keydownevt = function () {
+                $scope.keydownkeycode = event.keyCode;
+                $scope.keyupkeycode = "";
+                $scope.keypresskeycode = "";
+            };
 
   $scope.logTest = function() {
     console.log('array', calcArray);

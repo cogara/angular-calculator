@@ -11,7 +11,7 @@
 
     <div class="container">
       <h1>Calculator</h1>
-      <div class="calculator">
+      <div class="calculator" ng-keydown="keydownevt()" >
         <div class="calculator-screen" ng-model="screenDisplay">
           {{screenDisplay}}
 
@@ -43,10 +43,11 @@
 
       </div>
       <div class="testing" ng-click="logTest()">
-        Test Logs
+        Test Log
       </div>
       <div class="results-log" ng-model="resultsLog">
         <ul>
+          <h4>Calculation History</h4>
           <li ng-repeat="calc in storedCalc track by $index">
             {{calc.params[0]}} {{calc.params[1]}} {{calc.params[2]}} = {{calc.result}}
           </li>
