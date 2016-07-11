@@ -1,6 +1,6 @@
 angular.module('angularCalculator', []);
 angular.module('angularCalculator').controller('MainController', function($scope){
-  console.log('Hello World!');
+  $scope.buttonArray = [];
   $scope.screenDisplay = '0';
   $scope.storedCalc = [];
   var calcToggle = 0;
@@ -8,23 +8,28 @@ angular.module('angularCalculator').controller('MainController', function($scope
   var decActive = false;
   var storedValue;
 
-  $scope.buttonPress = function(key, type) {
-    switch (type) {
+  $scope.buttonPress = function(index) {
+    var tempType = $scope.buttonArray[index].type;
+    var tempButton = $scope.buttonArray[index].button;
+    switch (tempType) {
       case 'num':
-        number(key);
+        number(tempButton);
         break;
       case 'op':
-        operator(key);
+        operator(tempButton);
         break;
       case 'dec':
         addDec();
+        break;
+      case 'equ':
+        $scope.calculate();
         break;
     }
   }
 
   $scope.calculate = function() {
     calcToggle = 0;
-    if ($scope.calcArray.length > 1) {
+    if ($scope.calcArray.length > 0) {
     storedValue = $scope.screenDisplay;
     $scope.calcArray.push(parseFloat(storedValue));
 
@@ -94,9 +99,34 @@ angular.module('angularCalculator').controller('MainController', function($scope
     }
 
   }
+  function Button(button, type) {
+    this.button = button;
+    this.type = type;
+  }
 
   $scope.logTest = function() {
     console.log('array', $scope.calcArray);
     console.log('toggle', calcToggle);
   }
+
+  //row 1
+  $scope.buttonArray.push(new Button('7','num'));
+  $scope.buttonArray.push(new Button('8','num'));
+  $scope.buttonArray.push(new Button('9','num'));
+  $scope.buttonArray.push(new Button('/','op'));
+  //row 2
+  $scope.buttonArray.push(new Button('4','num'));
+  $scope.buttonArray.push(new Button('5','num'));
+  $scope.buttonArray.push(new Button('6','num'));
+  $scope.buttonArray.push(new Button('x','op'));
+  //row 3
+  $scope.buttonArray.push(new Button('1','num'));
+  $scope.buttonArray.push(new Button('2','num'));
+  $scope.buttonArray.push(new Button('3','num'));
+  $scope.buttonArray.push(new Button('-','op'));
+  //row 4
+  $scope.buttonArray.push(new Button('0','num'));
+  $scope.buttonArray.push(new Button('.','dec'));
+  $scope.buttonArray.push(new Button('+','op'));
+  $scope.buttonArray.push(new Button('=','equ'));
 })

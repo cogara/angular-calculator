@@ -65,11 +65,15 @@ h4 {
   left: 1px;
 }
 
+.button:hover {
+  background-color: rgb(210,210,210);
+}
+
 .button-3 {
   flex: 1 70%;
 }
 
-.orange {
+.button:last-of-type {
   background-color: rgb(220,150,0);
 }
 

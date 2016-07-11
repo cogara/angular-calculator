@@ -20,26 +20,7 @@
         <div class="calculator-buttons">
           <div class="button-3"></div>
           <div class="button" ng-click="clear('clear')">C</div>
-          <!-- Row One -->
-          <div class="button" ng-click="buttonPress('7', 'num')" id="7">7</div>
-          <div class="button" ng-click="buttonPress('8', 'num')" id="8">8</div>
-          <div class="button" ng-click="buttonPress('9', 'num')" id="9">9</div>
-          <div class="button" ng-click="buttonPress('/', 'op')" id="div">÷</div>
-          <!-- Row Two -->
-          <div class="button" ng-click="buttonPress('4', 'num')" id="4">4</div>
-          <div class="button" ng-click="buttonPress('5', 'num')" id="5">5</div>
-          <div class="button" ng-click="buttonPress('6', 'num')" id="6">6</div>
-          <div class="button" ng-click="buttonPress('x', 'op')" id="mult">x</div>
-          <!-- Row Three -->
-          <div class="button" ng-click="buttonPress('1', 'num')" id="1">1</div>
-          <div class="button" ng-click="buttonPress('2', 'num')" id="2">2</div>
-          <div class="button" ng-click="buttonPress('3', 'num')" id="3">3</div>
-          <div class="button" ng-click="buttonPress('-', 'op')" id="sub">-</div>
-          <!-- Row Four -->
-          <div class="button" ng-click="buttonPress('0', 'num')" id="0">0</div>
-          <div class="button" ng-click="buttonPress('.', 'dec')" id="dec">.</div>
-          <div class="button" ng-click="buttonPress('+', 'op')" id="plus">+</div>
-          <div class="button orange" ng-click="calculate()" id="equal">=</div>
+          <div class="button" ng-repeat="button in buttonArray track by $index" ng-click="buttonPress($index)">{{button.button}}</div>
         </div>
 
       </div>
