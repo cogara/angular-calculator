@@ -94,7 +94,6 @@ angular.module('angularCalculator').controller('MainController', function($scope
     if (!decActive) {
 
       number('.');
-      // $scope.screenDisplay += '.';
       decActive = true;
     }
 
